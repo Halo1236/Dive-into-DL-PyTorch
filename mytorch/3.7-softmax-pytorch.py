@@ -27,7 +27,7 @@ class LinearNet(nn.Module):
         y = self.linear(x.view(x.shape[0], -1))
         return y
 
-
+# 我们将对x的形状转换的这个功能自定义一个FlattenLayer并记录在d2lzh_pytorch
 class FlattenLayer(nn.Module):
     def __init__(self):
         super(FlattenLayer, self).__init__()
