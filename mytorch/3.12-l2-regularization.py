@@ -71,6 +71,7 @@ def fit_and_plot_pytorch(wd):
         for X, y in train_iter:
             l = loss(net(X), y).mean()
             optimizer_w.zero_grad()
+
             optimizer_b.zero_grad()
             l.backward()
 
@@ -86,5 +87,5 @@ def fit_and_plot_pytorch(wd):
 
 fit_and_plot(lambd=0)
 fit_and_plot(lambd=3)
-fit_and_plot_pytorch(0)
+fit_and_plot_pytorch(0) 
 fit_and_plot_pytorch(3)
