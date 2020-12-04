@@ -210,7 +210,7 @@ def evaluate_accuracy(data_iter, net, device=None):
                 acc_sum += (net(X.to(device)).argmax(dim=1) == y.to(device)).float().sum().cpu().item()
                 net.train()  # 改回训练模式
             else:  # 自定义的模型, 3.13节之后不会用到, 不考虑GPU
-                if ('is_training' in net.__code__.co_varnames):  # 如果有is_training这个参数
+                if 'is_training' in net.__code__.co_varnames:  # 如果有is_training这个参数
                     # 将is_training设置成False
                     acc_sum += (net(X, is_training=False).argmax(dim=1) == y).float().sum().item()
                 else:
@@ -261,6 +261,19 @@ def load_data_fashion_mnist(batch_size, resize=None, root='~/Datasets/FashionMNI
     test_iter = torch.utils.data.DataLoader(mnist_test, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
     return train_iter, test_iter
+
+
+# helper function to show an image
+# (used in the `plot_classes_preds` function below)
+def matplotlib_imshow(img, one_channel=False):
+    if one_channel:
+        img = img.mean(dim=0)
+    img = img / 2 + 0.5  # unnormalize
+    npimg = img.numpy()
+    if one_channel:
+        plt.imshow(npimg, cmap="Greys")
+    else:
+        plt.imshow(np.transpose(npimg, (1, 2, 0)))
 
 
 ############################# 5.8 ##############################

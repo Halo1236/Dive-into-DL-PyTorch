@@ -130,3 +130,16 @@ print(net)
 print(net[0])
 ```
 ModuleList仅仅是一个储存各种模块的列表，这些模块之间没有联系也没有顺序（所以不用保证相邻层的输入输出维度匹配），而且没有实现forward功能需要自己实现，所以上面执行net(torch.zeros(1, 784))会报NotImplementedError；而Sequential内的模块需要按照顺序排列，要保证相邻层的输入输出大小相匹配，内部forward功能已经实现。
+
+# 使用TensorBoard
+```python
+from torch.utils.tensorboard import SummaryWriter
+
+# default `log_dir` is "runs" - we'll be more specific here
+writer = SummaryWriter('runs/fashion_mnist_experiment_1')
+
+# cmd
+# 开始进入正轨，执行tensorboard命令，来生成网址。
+# tensorboard --logdir=path --host=127.0.0.1
+
+```

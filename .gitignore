@@ -7,3 +7,4 @@
 data/pikachu*
 # Pascal VOC2012数据集, 约2G
 data/VOCdevkit*
+*.pt
